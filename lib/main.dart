@@ -1,7 +1,7 @@
+import 'package:expenses/widgets/user_transactions.dart';
 import 'package:flutter/material.dart';
 
-import './widgets/transaction_list.dart';
-
+import './widgets/user_transactions.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,20 +16,20 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("expenses"),
       ),
-      body: Column(
+      body: SingleChildScrollView(
+          child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(width: double.infinity, child: Card(child: Text('chart'))),
-          TransactionList(),
+          UserTransactions()
         ],
-      ),
+      )),
     );
   }
 }
