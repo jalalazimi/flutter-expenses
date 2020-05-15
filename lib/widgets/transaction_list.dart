@@ -5,8 +5,9 @@ import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> userTransactions;
+  final Function deleteTransaction;
 
-  TransactionList(this.userTransactions);
+  TransactionList(this.userTransactions, this.deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -14,58 +15,56 @@ class TransactionList extends StatelessWidget {
         height: 500,
         child: userTransactions.isEmpty
             ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset('assets/images/waiting.png'),
-                  SizedBox(height: 10,),
-                  Text(
-                    "Add a new transaction!",
-                    style: Theme.of(context).textTheme.headline5,
-                  )
-                ],
-              )
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset('assets/images/waiting.png'),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Add a new transaction!",
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline5,
+            )
+          ],
+        )
             : ListView.builder(
-                itemBuilder: (ctx, index) {
-                  return Card(
-                      child: Row(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          '\$${userTransactions[index].amount.toStringAsFixed(2)}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context).primaryColorDark),
-                        ),
-                        margin:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            border: Border.all(
-                                color: Theme.of(context).primaryColorDark,
-                                width: 1)),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            userTransactions[index].title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
-                          ),
-                          Text(
-                            DateFormat.yMd()
-                                .add_Hm()
-                                .format(userTransactions[index].date),
-                            style: TextStyle(color: Colors.black45),
-                          )
-                        ],
-                      )
-                    ],
-                  ));
-                },
-                itemCount: userTransactions.length,
-              ));
+          itemBuilder: (ctx, index) {
+            return Card(
+              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+              child: ListTile(
+                leading: CircleAvatar(
+                  radius: 30,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: FittedBox(
+                      child: Text(
+                          '\$${userTransactions[index].amount.toStringAsFixed(
+                              2)}'),
+                    ),
+                  ),
+                ),
+                title: Text(userTransactions[index].title,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18)),
+                subtitle: Text(
+                    DateFormat.yMd()
+                        .add_Hm()
+                        .format(userTransactions[index].date),
+                    style: TextStyle(fontSize: 14)),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  color: Colors.redAccent ,
+                  onPressed: () {
+                    deleteTransaction(userTransactions[index].id);
+                  },
+                ),
+              ),
+            );
+          },
+          itemCount: userTransactions.length,
+        ));
   }
 }
