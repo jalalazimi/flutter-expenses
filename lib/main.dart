@@ -12,7 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Expenses App',
+        title: 'Personal Expenses',
+        theme: ThemeData(
+          primarySwatch: Colors.amber,
+          fontFamily: "OpenSans",
+          textTheme: TextTheme(
+            headline5: TextStyle(fontSize: 22, color: Colors.black54),
+          ),
+        ),
         home: MyHomePage());
   }
 }
@@ -23,11 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [
-    Transaction(
-        id: 't1', title: 'New TV', amount: 678.45, date: DateTime.now()),
-    Transaction(id: 't2', title: 'Pizza', amount: 12.90, date: DateTime.now())
-  ];
+  final List<Transaction> _userTransactions = [];
 
   void _addNewTransaction(String title, double amount) {
     final newTx = Transaction(
@@ -59,11 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("expenses"),
+        title: Text("Personal Expenses"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            color: Colors.white,
             onPressed: () => startAddNewTransaction(context),
           )
         ],
