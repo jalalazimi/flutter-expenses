@@ -41,10 +41,13 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
+    return SingleChildScrollView(
       child: Container(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -62,8 +65,8 @@ class _NewTransactionState extends State<NewTransaction> {
                 height: 70,
                 child: Row(
                   children: <Widget>[
-                    Icon(Icons.calendar_today),
-                    SizedBox(
+                    const Icon(Icons.calendar_today),
+                    const SizedBox(
                       width: 8,
                     ),
                     Expanded(
@@ -72,7 +75,7 @@ class _NewTransactionState extends State<NewTransaction> {
                       ),
                     ),
                     FlatButton(
-                      child: Text(
+                      child: const Text(
                         'Choose Date',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -82,14 +85,14 @@ class _NewTransactionState extends State<NewTransaction> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Container(
                 alignment: Alignment.centerRight,
                 child: RaisedButton(
                   color: Theme.of(context).primaryColorDark,
-                  child: Text(
+                  child: const Text(
                     "Add Transaction",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),

@@ -39,7 +39,7 @@ class Chart extends StatelessWidget {
     return Container(
       child: Card(
           elevation: 2,
-          margin: EdgeInsets.all(8),
+          margin: const EdgeInsets.all(8),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
             child: Row(

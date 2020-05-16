@@ -5,7 +5,7 @@ class ChartBar extends StatelessWidget {
   final double spendingAmount;
   final double spendingPrecentageOfAmount;
 
-  ChartBar(
+  const ChartBar(
       {@required this.label,
       @required this.spendingAmount,
       @required this.spendingPrecentageOfAmount});
@@ -20,7 +20,7 @@ class ChartBar extends StatelessWidget {
               child: FittedBox(
                   child: Text('\$${spendingAmount.toStringAsFixed(0)}'))),
           SizedBox(
-            height: constraints.maxHeight * 0.05,
+            height: constraints.maxHeight * 0.04,
           ),
           Container(
             height: constraints.maxHeight * 0.6,
@@ -42,9 +42,9 @@ class ChartBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: constraints.maxHeight * 0.05,
+            height: constraints.maxHeight * 0.04,
           ),
-          Container(height: constraints.maxHeight * 0.15, child: Text(label))
+          Container(height: constraints.maxHeight * 0.17, child: Text(label))
         ],
       );
     });
