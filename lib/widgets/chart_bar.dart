@@ -12,38 +12,41 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-            height: 22,
-            child: FittedBox(
-                child: Text('\$${spendingAmount.toStringAsFixed(0)}'))),
-        SizedBox(
-          height: 4,
-        ),
-        Container(
-          height: 60,
-          width: 10,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                  decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(4))),
-              FractionallySizedBox(
-                  heightFactor: spendingPrecentageOfAmount,
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(4))))
-            ],
+    return LayoutBuilder(builder: (cx, constraints) {
+      return Column(
+        children: <Widget>[
+          Container(
+              height: constraints.maxHeight * 0.15,
+              child: FittedBox(
+                  child: Text('\$${spendingAmount.toStringAsFixed(0)}'))),
+          SizedBox(
+            height: constraints.maxHeight * 0.05,
           ),
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Text(label)
-      ],
-    );
+          Container(
+            height: constraints.maxHeight * 0.6,
+            width: 10,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(4))),
+                FractionallySizedBox(
+                    heightFactor: spendingPrecentageOfAmount,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(4))))
+              ],
+            ),
+          ),
+          SizedBox(
+            height: constraints.maxHeight * 0.05,
+          ),
+          Container(height: constraints.maxHeight * 0.15, child: Text(label))
+        ],
+      );
+    });
   }
 }
